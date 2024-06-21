@@ -1,0 +1,58 @@
+#+TITLE: My Org Mode Example
+#+TODO: TODO INPROGRESS NEXT WAITING HOLD | DONE CANCELLED
+#+AUTHOR: John Doe
+#+DATE: 2000-06-13
+
+* DONE [#A] Review document :test:
+DEADLINE: <2009-07-01 Wed +1m -0d> 
+some text Body
+asdasd
+SCHEDULED: <2009-06-16 Tue +1w> 
+blablabblablab
+CLOSED: [2012-02-26 Sun 21:15] 
+blablab
+CLOCK: [2012-02-26 Sun 21:10]--[2012-02-26 Sun 21:15] =>  0:05
+blablabblablab
+* DONE Heading          :TAG:
+CLOSED:: [2012-02-26 Sun 21:15] 
+:DATES:
+:SCHEDULED: <2012-02-26 Sun>
+:DATESEND:
+CLOCK: [2012-02-26 Sun 21:10]--[2012-02-26 Sun 21:15] =>  0:05
+asdasd
+:PROPERTIES:
+:Effort:   1:00
+:OtherProperty:   some text
+:PROPERTIESEND:
+Body texts...
+asdad
+DESCRIPTION: testing task descriotion for orgmode
+* Estudiar
+DEADLINE: <2024-06-25 Tue>
+SCHEDULED: <2024-06-24 Mon>
+Temas: Mecánica, electrodinámica, acústica, música
+- asociadas
+- asdbugav
+** Mecánica
+*** Newtoniana/analítica
+**** TODO problema de la masa rebotando
+   - revisión libro de lemos, mecánica analítica
+   - ecuación de onda, funciones de green asociadas
+   - buscar ejercicios
+blabla comentarios adicionales 
+*** Restricciones y ligaduras
+** acústica, música
+- [ ] construcción de la escala pitagórica, el tetatrys
+- [ ] construcción de escala musicales
+DEADLINE: <2024-06-20>
+- [x] construcción del monocordio 
+* Proyecto cartón
+** parte uno: planeación del primer 'lote' de producción
+* set de grabación
+** revisión de espcion
+** escenogrfía - proyecto cartón
+* proyectos de programación
+** Meals Planner
+** task manager
+- Las tareas tendrán un atributo de nivel y otro de parent_task
+

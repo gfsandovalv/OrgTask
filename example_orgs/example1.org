@@ -1,0 +1,36 @@
+* DONE [#A] Review document :test:
+DEADLINE: <2009-07-01 Wed +1m -0d> 
+some text Body
+:STEPS:
+:step 1 name: - [x] step extention
+:step 2 name: - [x] step extention blablabblablab
+:STEPSEND:
+asdasd
+SCHEDULED: <2009-06-16 Tue +1w> 
+blablabblablab
+- simple list
+- asdasd
+- asdg
+1. asdad
+2. sad
+CLOSED: [2012-02-26 Sun 21:15] 
+:PROPERTIES:
+:Effort:   1:00
+:OtherProperty:   some text
+:PROPERTIESEND:
+CLOCK: [2012-02-26 Sun 21:10]--[2012-02-26 Sun 21:15] =>  0:05
+blablabblablab
+- [x] asdad
+- [ ] luysuy
+* DONE Heading          :TAG:
+CLOSED:: [2012-02-26 Sun 21:15] 
+CLOCK: [2012-02-26 Sun 21:10]--[2012-02-26 Sun 21:15] =>  0:05
+asdasd
+:PROPERTIES:
+:Effort:   1:00
+:OtherProperty:   some text
+:END:
+Body texts...
+asdad
+DESCRIPTION: testing task descriotion for orgmode
+    
