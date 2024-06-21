@@ -1,6 +1,6 @@
 # OrgTask
 Organizador de tareas basado en [org-mode](https://orgmode.org/). 
-Interfaza basada en texto TUI escrita con la librería [textual](https://textual.textualize.io/)
+Interfaz basada en texto TUI escrita con la librería [textual](https://textual.textualize.io/)
 
 versión 0.0.1
 * DONE se modificó orgparse
