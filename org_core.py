@@ -104,7 +104,7 @@ class OrgAgenda():
                                     "OrgTask_obj" : _task_list}, 
                              index = [x.heading for x in _task_list])
 
-        #self.tasks['summaries'] = [task.str_summary for task in self.tasks['OrgTask_obj']]
+        self.tasks['summaries'] = [task.string_summary for task in self.tasks['OrgTask_obj']]
         self.nodes_max_level = [x.max_level for x in _task_list]
         self.max_level = max(self.nodes_max_level)
 
@@ -119,8 +119,6 @@ class OrgTask(org_parse.node.OrgNode):
         self.lists = get_lists(self.body.split('\n')) if self.body else None
         self.max_level = get_max_level(src_obj)
         self.string_summary = markdow_summary(src_obj, string=True)
-
-
 
     def duplicate_attributes(self, src_obj):
         for key, value in src_obj.__dict__.items():
