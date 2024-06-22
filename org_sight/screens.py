@@ -4,14 +4,18 @@ from textual.screen import Screen
 from textual.app import ComposeResult
 import sys
 sys.path.append('../') 
+from org_core import OrgAgenda
 from info import APP_NAME
 
 class TaskExplorer(Screen):
+    """
+        Receives an agenda as first positional argument
+    """
     table = DataTable(cursor_type='row')
     TITLE = "Task Explorer"
     SUB_TITLE = APP_NAME
     
-    def __init__(self, agenda, name: str | None = None, id: str | None = None, classes: str | None = None) -> None:
+    def __init__(self, agenda:OrgAgenda, name: str | None = None, id: str | None = None, classes: str | None = None) -> None:
         super().__init__(name, id, classes)
         self.task_list = agenda.tasks['Task name']
         self.agenda_summaries = agenda.tasks['summaries']
