@@ -1,4 +1,4 @@
-import orgparse
+import org_parse
 import re
 from pandas import Series, DataFrame
 
@@ -28,7 +28,7 @@ def object_attributes(obj):
         
 class OrgAgenda():
     def __init__(self, file_path) -> None:
-        self.root = orgparse.load(file_path)
+        self.root = org_parse.load(file_path)
         self.title = self.root.get_file_property('TITLE')
         self.author = self.root.get_file_property('AUTHOR')
         self.creation_date = self.root.get_file_property('DATE')
@@ -41,10 +41,8 @@ class OrgAgenda():
                                     "OrgTask_obj" : _task_list}, 
                              index = [x.heading for x in _task_list])
 
+        self.tasks['summaries'] = [task.str_summary for task in self.tasks['OrgTask_obj']]
         
-    def get_summaries(self):
-        self.summaries = [task.get_summary() for task in self.tasks]
-        return self.summaries
 
 class OrgTask():
     def __init__(self, node) -> None:
@@ -64,11 +62,10 @@ class OrgTask():
         self.body = node.body if node.body else None
         self.lists = get_lists(self.body.split('\n')) if self.body else None
         self.priority = node.priority if node.priority else None
-
-    def get_summary(self):
-        self.summary_dict = None
-        summary_dict = object_attributes(self)
-        summary_dict.pop('_lines')
-        summary_dict.pop('summary_dict')
-        return summary_dict
+        self_attrs = self.__dict__
+        keys = list(self_attrs.keys())
+        to_remove = ('_lines', 'has_date')
+        for r in to_remove:
+            keys.remove(r)
+        self.str_summary = '\n'.join([x + ' ' + str(self_attrs[x]) for x in keys])
         

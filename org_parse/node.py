@@ -10,10 +10,12 @@ from .extra import to_rich_text, Rich
 def new_lines(lines_array):
     temp_lines = []
     timestamps_keywords = ('CLOSED', 'SCHEDULED', 'DEADLINE')
+    other_keywords = ('CLOCK',)
     if len(lines_array) > 1:
         temp_lines.append(lines_array[0])
         temp_lines.append(' '.join([x for x in lines_array if x.startswith(timestamps_keywords)]))
-        temp_lines = temp_lines + [x for x in lines_array if not x.startswith(timestamps_keywords)][1:]
+        temp_lines.append(' '.join([x for x in lines_array if x.startswith(other_keywords)]))
+        temp_lines = temp_lines + [x for x in lines_array if not x.startswith(sum((timestamps_keywords, other_keywords), ()))][1:]
         return temp_lines
     else:
         return lines_array
@@ -830,7 +832,7 @@ class OrgBaseNode(Sequence):
     @classmethod
     def from_chunk(cls, env, lines):
         self = cls(env)
-        self._lines = lines
+        self._lines = new_lines(lines)
         self._parse_comments()
         return self
 

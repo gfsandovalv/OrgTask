@@ -10,7 +10,7 @@ class MainApp(App):
         ("l", "switch_mode('full_list')", "Detailed list"),  
     ]
     MODES = {
-        "full_list": TaskExplorer(agenda.tasks),  
+        "full_list": TaskExplorer(agenda),  
     }
 
     def on_mount(self) -> None:
