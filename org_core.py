@@ -41,31 +41,23 @@ class OrgAgenda():
                                     "OrgTask_obj" : _task_list}, 
                              index = [x.heading for x in _task_list])
 
-        self.tasks['summaries'] = [task.str_summary for task in self.tasks['OrgTask_obj']]
+        #self.tasks['summaries'] = [task.str_summary for task in self.tasks['OrgTask_obj']]
+
+class OrgTask(org_parse.node.OrgNode):
+    def __init__(self, src_obj=None, env=None, *args, **kwds) -> None:
+        super().__init__(env=env, *args, **kwds)
+        if src_obj:
+            self.duplicate_attributes(src_obj)
         
-
-class OrgTask():
-    def __init__(self, node) -> None:
-        self._lines = node._lines
-        self.heading = node.heading if node.heading else None
-
-        # time and dates
-        self.has_date = node.has_date() if node.has_date() else None
-        self.scheduled = node.scheduled if node.scheduled else None
-        self.deadline = node.deadline if node.deadline else None
-        self.closed = node.closed if node.closed else None
-        self.datelist = node.datelist if node.datelist else None
-        self.clock = node.clock if node.clock else None
-
-        self.properties = node.properties if node.properties else None
-        self.tags = node.tags if node.tags else None
-        self.body = node.body if node.body else None
         self.lists = get_lists(self.body.split('\n')) if self.body else None
-        self.priority = node.priority if node.priority else None
-        self_attrs = self.__dict__
+        """self_attrs = self.__dict__
         keys = list(self_attrs.keys())
         to_remove = ('_lines', 'has_date')
         for r in to_remove:
             keys.remove(r)
-        self.str_summary = '\n'.join([x + ' ' + str(self_attrs[x]) for x in keys])
-        
+        self.str_summary = '\n'.join([x + ' ' + str(self_attrs[x]) for x in keys])"""
+
+    def duplicate_attributes(self, src_obj):
+        for key, value in src_obj.__dict__.items():
+            setattr(self, key, value)        
+
