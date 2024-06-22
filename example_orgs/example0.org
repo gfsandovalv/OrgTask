@@ -13,11 +13,9 @@ CLOSED: [2012-02-26 Sun 21:15]
 blablab
 CLOCK: [2012-02-26 Sun 21:10]--[2012-02-26 Sun 21:15] =>  0:05
 blablabblablab
-* DONE Heading          :TAG:
-CLOSED:: [2012-02-26 Sun 21:15] 
-:DATES:
-:SCHEDULED: <2012-02-26 Sun>
-:DATESEND:
+* DONE Example with properties          :TAG:
+CLOSED: [2012-02-26 Sun 21:15] 
+SCHEDULED: <2012-02-26 Sun>
 CLOCK: [2012-02-26 Sun 21:10]--[2012-02-26 Sun 21:15] =>  0:05
 asdasd
 :PROPERTIES:
