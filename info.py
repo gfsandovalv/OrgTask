@@ -5,7 +5,7 @@ VERSION = "0.2.0"
 DESCRIPTION = "A complete task manager"
 AUTHOR = "Gabriel Sandoval"
 EMAIL = "gfsandovalv@gmail.com"
-LICENSE = "MIT"
+LICENSE = "GPL"
 
 RELEASE_NOTES = {
     "0.1.0": [
