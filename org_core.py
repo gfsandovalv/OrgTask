@@ -42,22 +42,34 @@ class OrgAgenda():
                              index = [x.heading for x in _task_list])
 
         #self.tasks['summaries'] = [task.str_summary for task in self.tasks['OrgTask_obj']]
+        self.nodes_max_level = [x.max_level for x in _task_list]
+        self.max_level = max(self.nodes_max_level)
+
 
 class OrgTask(org_parse.node.OrgNode):
     def __init__(self, src_obj=None, env=None, *args, **kwds) -> None:
         super().__init__(env=env, *args, **kwds)
         if src_obj:
             self.duplicate_attributes(src_obj)
-        
+        # TODO create summary in markdown format
+        # TODO show children also in markdown format
         self.lists = get_lists(self.body.split('\n')) if self.body else None
-        """self_attrs = self.__dict__
-        keys = list(self_attrs.keys())
-        to_remove = ('_lines', 'has_date')
-        for r in to_remove:
-            keys.remove(r)
-        self.str_summary = '\n'.join([x + ' ' + str(self_attrs[x]) for x in keys])"""
+        self.max_level = get_max_level(src_obj)
 
     def duplicate_attributes(self, src_obj):
         for key, value in src_obj.__dict__.items():
             setattr(self, key, value)        
 
+
+def get_max_level(base_node):
+    max_level = 0
+
+    def traverse(node):
+        nonlocal max_level
+        if node.level > max_level:
+            max_level = node.level
+        for child in node.children:
+            traverse(child)
+    
+    traverse(base_node)
+    return max_level
