@@ -6,16 +6,23 @@ from .date import OrgDate, OrgDateClock, OrgDateRepeatedTask, parse_sdc, OrgDate
 from .inline import to_plain_text
 from .extra import to_rich_text, Rich
 
-# new lines
+
 def new_lines(lines_array):
+    """
+    this function is made for putting together all the timestamp lines into
+    a single one. Also, find lines starting with other_keywords, but those are not joint.
+    """
     temp_lines = []
     timestamps_keywords = ('CLOSED', 'SCHEDULED', 'DEADLINE')
-    other_keywords = ('CLOCK',)
+    other_keywords = ('CLOCK', 'DESCRIPTION')
     if len(lines_array) > 1:
         temp_lines.append(lines_array[0])
-        temp_lines.append(' '.join([x for x in lines_array if x.startswith(timestamps_keywords)]))
-        temp_lines.append(' '.join([x for x in lines_array if x.startswith(other_keywords)]))
+        timestamps_lines = [x for x in lines_array if x.startswith(timestamps_keywords)]
+        other_key_lines = [x for x in lines_array if x.startswith(other_keywords)]
+        temp_lines.append(' '.join(timestamps_lines))
+        temp_lines = temp_lines + other_key_lines
         temp_lines = temp_lines + [x for x in lines_array if not x.startswith(sum((timestamps_keywords, other_keywords), ()))][1:]
+        
         return temp_lines
     else:
         return lines_array
